@@ -12,7 +12,7 @@ const Todolist = ({ todos, setTodos, setEditTodo }) => {
         )
     };
     const handleEdit = ({id}) =>{
-       const findTodo = todos.findTodo((todo) => todo.id === id);
+       const findTodo = todos.find((todo) => todo.id === id);
        setEditTodo(findTodo);
     };
 
