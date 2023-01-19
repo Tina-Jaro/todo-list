@@ -22,6 +22,14 @@
   box-shadow: 3px 6px 40px black;
   margin-bottom: 10px;
 }
+.header{
+  height:150px;
+}
+.header input{
+  width: 380px;
+  height: 70px;
+  font-size: large;
+}
 
 .header h1{
   color: white;

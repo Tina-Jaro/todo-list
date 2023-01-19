@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
 import Form from './components/form';
 import Todolist from './components/Todolist';
+// import Email from './components/Email';
 
 const App = () => {
 
@@ -11,6 +12,7 @@ const App = () => {
   const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editTodo, setEditTodo] = useState(null);
+  
 
   useEffect(() => {
     localStorage.setItem("todos", JSON.stringify(todos));
@@ -38,6 +40,9 @@ const App = () => {
           todos={todos}
           setTodos={setTodos}
           setEditTodo={setEditTodo}/>
+        </div>
+        <div>
+          {/* <Email /> */}
         </div>
       </div>
     </div>
