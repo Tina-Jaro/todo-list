@@ -13,6 +13,7 @@ const Todolist = ({ todos, setTodos, setEditTodo }) => {
     };
     const handleEdit = ({id}) =>{
        const findTodo = todos.find((todo) => todo.id === id);
+       console.log(findTodo);
        setEditTodo(findTodo);
     };
 
@@ -24,11 +25,15 @@ const Todolist = ({ todos, setTodos, setEditTodo }) => {
             {todos.map((todo) => (
                 <li className="list-item" key={todo.id}>
                     <input type="text"
-                        value={todo.title}
+                        value={todo.title.task}
                         className={`list ${todo.completed ? "completed" : ""}`}
                         onChange={(event) => event.preventDefault()} 
                     />
-                    
+                     <input type="text"
+                        value={todo.title.deadline}
+                        className={`list ${todo.completed ? "completed" : ""}`}
+                        onChange={(event) => event.preventDefault()} 
+                    />
                     <div>
                         <button className="button-complete task-button" onClick={() => handleComplete(todo)}>
                             <i className="fa fa-check-circle"></i>

@@ -12,30 +12,50 @@ const Form = ({input, setInput, todos, setTodos, editTodo, setEditTodo}) => {
     };
     useEffect(() =>{
         if(editTodo){
-            setInput(editTodo.title);
+            // setInput(editTodo.title);
+            console.log("we are here")
+            setInput((input) => ({ ...input, task: editTodo.title.task }));
+            setInput((input) => ({ ...input, deadline: new Date(editTodo.title.deadline)  }));
+            console.log("the input is " + typeof input.deadline);
         } else{
-            setInput("");
+            // setInput("");
+            setInput((input) => ({ ...input, task: "", deadline: "" }));
+         
         }
     }, [setInput, editTodo]);
     const onInputChange = (event) => {
-        setInput(event.target.value);
+        setInput({
+            ...input, [event.target.name] : event.target.value
+        });
     };
-
+   const resetForm = () => { 
+        document.getElementById("todoForm").reset();
+      }
     const onFormSubmit = (event) => {
         event.preventDefault();
+        console.log(input);
         if(!editTodo){
         setTodos([...todos, {id: uuidv4(), title: input, completed: false}]);
-        setInput("");
+        // resetForm();
+        event.target.reset();
+        console.log(event.target.name);
+        setInput({
+            // ...input, [event.target.name] : editTodo.title.value
+            task: '', 
+            deadline: ''
+        });
         }else {
             updateTodo(input, editTodo.id, editTodo.completed)
         }
     }
     return (
-       <form onSubmit={onFormSubmit}>
+       <form id="todoForm" onSubmit={onFormSubmit}>
         <input type="text" placeholder="Enter a Todo..." className="task-input" 
-        value={input} required
-        onChange={onInputChange}
+        value={input.task} required
+        onChange={onInputChange} name="task"
         />
+        <input type="datetime-local" className="task-input" required onChange={onInputChange} 
+        value={input.deadline} name="deadline"/>
         <button className="button-add" type="submit">
         {editTodo ? "OK" : "ADD"}
         </button>

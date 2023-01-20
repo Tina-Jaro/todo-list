@@ -1,15 +1,15 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
 import Header from './components/Header';
-import Form from './components/form';
+import Form from './components/Form';
 import Todolist from './components/Todolist';
-// import Email from './components/Email';
+import Email from './components/Email';
 
 const App = () => {
 
   const initialState = JSON.parse(localStorage.getItem("todos")) || [];
-
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState({ task: "", deadline: new Date() })
+  // const [input, setInput] = useState("");
   const [todos, setTodos] = useState([]);
   const [editTodo, setEditTodo] = useState(null);
   
@@ -42,7 +42,7 @@ const App = () => {
           setEditTodo={setEditTodo}/>
         </div>
         <div>
-          {/* <Email /> */}
+          <Email />
         </div>
       </div>
     </div>
